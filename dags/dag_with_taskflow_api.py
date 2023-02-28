@@ -11,7 +11,7 @@ default_args = {
     dag_id = 'a_easier_way_dag_with_task_flow_api',
     default_args = default_args,
     start_date  = datetime(2023,2,25),
-    schedule_interval = '@daily',
+    schedule_interval = '0 0 * * *',
     catchup=False
     )
 def hello_world_etl():

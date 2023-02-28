@@ -19,7 +19,7 @@ from airflow.providers.postgres.operators.postgres import PostgresOperator
 def ProcessEmployees():
     create_employees_table = PostgresOperator(
         task_id="create_employees_table",
-        postgres_conn_id="tutorial_pg_conn",
+        postgres_conn_id="postgres-docker-airflow",
         sql="""
             CREATE TABLE IF NOT EXISTS employees (
                 "Serial Number" NUMERIC PRIMARY KEY,
@@ -32,7 +32,7 @@ def ProcessEmployees():
 
     create_employees_temp_table = PostgresOperator(
         task_id="create_employees_temp_table",
-        postgres_conn_id="tutorial_pg_conn",
+        postgres_conn_id="postgres-docker-airflow",
         sql="""
             DROP TABLE IF EXISTS employees_temp;
             CREATE TABLE employees_temp (
@@ -57,7 +57,7 @@ def ProcessEmployees():
         with open(data_path, "w") as file:
             file.write(response.text)
 
-        postgres_hook = PostgresHook(postgres_conn_id="tutorial_pg_conn")
+        postgres_hook = PostgresHook(postgres_conn_id="postgres-docker-airflow")
         conn = postgres_hook.get_conn()
         cur = conn.cursor()
         with open(data_path, "r") as file:
@@ -80,7 +80,7 @@ def ProcessEmployees():
             SET "Serial Number" = excluded."Serial Number";
         """
         try:
-            postgres_hook = PostgresHook(postgres_conn_id="tutorial_pg_conn")
+            postgres_hook = PostgresHook(postgres_conn_id="postgres-docker-airflow")
             conn = postgres_hook.get_conn()
             cur = conn.cursor()
             cur.execute(query)

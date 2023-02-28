@@ -40,4 +40,3 @@ with DAG(
     # or 
     task1 >> [task2, task3] # task2 and task3 will start after completion of task 1 
 
-    task1
