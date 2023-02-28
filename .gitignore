@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+.DS_Store
+~$rflow Manual.docx
+
 # C extensions
 *.so
 
